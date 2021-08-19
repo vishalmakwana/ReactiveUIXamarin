@@ -32,7 +32,7 @@ namespace ReactiveUIXamarin
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
-            new ServiceDIBindings().Configure();
+            new ServiceDIBindings().Configure(containerRegistry);
             AppContainer = containerRegistry.GetContainer();
             AppContainerRegistry = containerRegistry;
         }
