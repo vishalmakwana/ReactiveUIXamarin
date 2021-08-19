@@ -1,28 +1,39 @@
-﻿using System;
+﻿using DryIoc;
+using Prism.DryIoc;
+using Prism.Ioc;
+using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+using Device = Xamarin.Forms.Device;
+using System;
+using System.Diagnostics;
+using ReactiveUIXamarin.ViewModels;
 
 namespace ReactiveUIXamarin
 {
-    public partial class App : Application
+    public partial class App
     {
+        public static IContainer AppContainer;
+        public static IContainerRegistry AppContainerRegistry;
+        private static readonly Lazy<App> LazyInstance =
+          new Lazy<App>(() => new App());
+        public static App Instance => LazyInstance.Value;
         public App()
         {
+          
+        }
+        protected override void OnInitialized()
+        {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
-        protected override void OnStart()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-        }
+            containerRegistry.RegisterForNavigation<NavigationPage>(nameof(NavigationPage));
+            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>(nameof(MainPage));
 
-        protected override void OnSleep()
-        {
-        }
-
-        protected override void OnResume()
-        {
+            AppContainer = containerRegistry.GetContainer();
+            AppContainerRegistry = containerRegistry;
         }
     }
 }

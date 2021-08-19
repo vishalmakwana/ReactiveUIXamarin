@@ -54,10 +54,19 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Prism.DryIoc.Forms">
+      <Version>8.1.97</Version>
+    </PackageReference>
+    <PackageReference Include="ReactiveUI">
+      <Version>15.1.1</Version>
+    </PackageReference>
     <PackageReference Include="ReactiveUI.Events.XamEssentials">
       <Version>15.1.1</Version>
     </PackageReference>
     <PackageReference Include="ReactiveUI.Events.XamForms">
+      <Version>15.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="ReactiveUI.Fody">
       <Version>15.1.1</Version>
     </PackageReference>
     <PackageReference Include="ReactiveUI.XamForms">
