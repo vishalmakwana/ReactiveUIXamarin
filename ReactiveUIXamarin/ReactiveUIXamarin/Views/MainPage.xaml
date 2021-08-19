@@ -17,7 +17,16 @@
                 TextColor="White" />
         </Frame>
 
-        <Entry Text="{Binding UserName}" TextColor="WhiteSmoke" />
+        <Entry Text="{Binding SearchQuery}" TextColor="WhiteSmoke" />
+        <CollectionView ItemsSource="{Binding Contacts}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label Text="{Binding FullName}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </StackLayout>
 
 </ContentPage>

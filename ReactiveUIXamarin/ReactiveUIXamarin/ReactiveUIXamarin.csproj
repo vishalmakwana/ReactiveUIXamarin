@@ -25,4 +25,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\ReactiveUIXamarin.Infrastructure.DI\ReactiveUIXamarin.Infrastructure.DI.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
 </Project>

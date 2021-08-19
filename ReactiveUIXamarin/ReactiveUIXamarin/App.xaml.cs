@@ -7,6 +7,7 @@ using Device = Xamarin.Forms.Device;
 using System;
 using System.Diagnostics;
 using ReactiveUIXamarin.ViewModels;
+using ReactiveUIXamarin.Infrastructure.DI;
 
 namespace ReactiveUIXamarin
 {
@@ -29,9 +30,9 @@ namespace ReactiveUIXamarin
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<NavigationPage>(nameof(NavigationPage));
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>(nameof(MainPage));
-
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            new ServiceDIBindings().Configure();
             AppContainer = containerRegistry.GetContainer();
             AppContainerRegistry = containerRegistry;
         }
