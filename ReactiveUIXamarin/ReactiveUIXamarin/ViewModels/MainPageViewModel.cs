@@ -5,9 +5,12 @@ using ReactiveUIXamarin.Infrastructure.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ReactiveUIXamarin.ViewModels
 {
@@ -41,6 +44,31 @@ namespace ReactiveUIXamarin.ViewModels
                     else
                         return $"{Contacts.Count} have been found in result '{SearchQuery}'";
                 }).ToProperty(this, vm => vm.SearchQueryResult, out _stringResult);
+            var canExecuteClear = this.WhenAnyValue(s => s.SearchQuery).Select(query =>
+            {
+                return !string.IsNullOrEmpty(query);
+            });
+            ClearCommand = ReactiveCommand.Create(ExecuteClearCommand, canExecuteClear);
+            
+            ClearCommand.ThrownExceptions.Subscribe(a =>
+            {
+                Debug.Write(a);
+            });
+            
         }
+
+        private void ExecuteClearCommand()
+        {
+            throw new Exception("This Is test");
+            SearchQuery = "";
+        }
+        #region Commands
+
+        public ReactiveCommand<Unit,Unit> ClearCommand { get; set; }
+        #endregion
+
+        #region Methods
+
+        #endregion
     }
 }

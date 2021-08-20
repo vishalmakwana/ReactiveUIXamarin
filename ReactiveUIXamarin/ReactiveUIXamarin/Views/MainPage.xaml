@@ -14,10 +14,16 @@
                 FontSize="36"
                 HorizontalTextAlignment="Center"
                 Text="Welcome to Xamarin.Forms!"
-                TextColor="White" />
+                TextColor="{AppThemeBinding Dark=White,
+                                            Light=black}" />
+
         </Frame>
 
-        <Entry Text="{Binding SearchQuery}" TextColor="WhiteSmoke" />
+        <Entry Text="{Binding SearchQuery}" TextColor="{AppThemeBinding Dark=White, Light=black}" />
+        <Button
+            BackgroundColor="Red"
+            Command="{Binding ClearCommand}"
+            Text="Clear" />
         <CollectionView ItemsSource="{Binding Contacts}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
